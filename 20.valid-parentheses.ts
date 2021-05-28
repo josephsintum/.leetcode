@@ -7,16 +7,25 @@
 // @lc code=start
 function isValid(s: string): boolean {
 
+    let hashmap = new Map([
+        ['}', '{'],
+        [']', '['],
+        [')', '(']
+    ])
+
     let arr = []
 
-    if (s[0] === '}' || s[0] === ']' || s[0] === ')') return false;
+    // checking if the first value is a closing parenthesis
+    if (hashmap.has(s[0])) return false;
 
     for (let i = 0; i < s.length; i++) {
-        if (s[i] === '{' || s[i] === '[' || s[i] === '(') arr.push(s[i]);
-        else if (s[i] === '}' && arr[arr.length - 1] === '{') arr.pop();
-        else if (s[i] === ']' && arr[arr.length - 1] === '[') arr.pop();
-        else if (s[i] === ')' && arr[arr.length - 1] === '(') arr.pop();
-        else return false;
+
+        // if value is a closing parenthesis 
+        if (hashmap.has(s[i])) {
+            // if bracket matches with last element in arr
+            if (hashmap.get(s[i]) == arr[arr.length-1]) arr.pop();
+            else return false
+        } else arr.push(s[i])
     }
     return !arr.length;
 
