@@ -43,26 +43,45 @@
  * integer overflows.
  *
  */
-package leetcode
+// package leetcode
+package main
 
 import (
+	"math"
 	"strconv"
 )
 
 // @lc code=start
 func reverse(x int) int {
-	negativity := false
+
+	// if negative, then convert to positive
+	negative := false
 	if x < 0 {
-		negativity = true
+		x = -x
+		negative = true
 	}
 
 	xString := strconv.FormatInt(int64(x), 10)
 
+	rev := ""
+
 	for _, num := range xString {
-		xString = string(num) + xString
+		rev = string(num) + rev
+	}
+	num, _ := strconv.Atoi(rev)
+	if negative {
+		num = -num
 	}
 
-	return 0
+	// if int32 overflow return 0
+	if num <= math.MinInt32 || num >= math.MaxInt32 {
+		return 0
+	}
+	return num
 }
 
 // @lc code=end
+
+func main() {
+	println(reverse(1534236469))
+}
