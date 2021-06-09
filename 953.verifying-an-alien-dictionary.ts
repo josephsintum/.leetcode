@@ -19,7 +19,7 @@ function isAlienSorted(words: string[], order: string): boolean {
     for (let i = 1; i < words.length; i++) {
 
         for (let j = 0; j < words[i - 1].length; j++) {
-            console.log(words[i-1][j] + words[i][j]);
+            console.log(words[i - 1][j] + words[i][j]);
             if (!words[i][j]) return false
             if (alienphabet.get(words[i - 1][j]) > alienphabet.get(words[i][j]))
                 return false
@@ -37,7 +37,7 @@ function isAlienSorted(words: string[], order: string): boolean {
 // let words = ["word","world","row"], order = "worldabcefghijkmnpqstuvxyz" // Output: false
 // let words = ["apple","app"], order = "abcdefghijklmnopqrstuvwxyz"   // false
 // let words = ["kuvp", "q"], order = "ngxlkthsjuoqcpavbfdermiywz"    // output: true
-let words = ["fxasxpc","dfbdrifhp","nwzgs","cmwqriv","ebulyfyve","miracx","sxckdwzv","dtijzluhts","wwbmnge","qmjwymmyox"], order = "zkgwaverfimqxbnctdplsjyohu"    // output: false
+let words = ["fxasxpc", "dfbdrifhp", "nwzgs", "cmwqriv", "ebulyfyve", "miracx", "sxckdwzv", "dtijzluhts", "wwbmnge", "qmjwymmyox"], order = "zkgwaverfimqxbnctdplsjyohu"    // output: false
 
 
 console.log(isAlienSorted(words, order))

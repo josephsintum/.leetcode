@@ -82,6 +82,3 @@ func reverse(x int) int {
 
 // @lc code=end
 
-func main() {
-	println(reverse(1534236469))
-}
