@@ -6,12 +6,22 @@
 
 // @lc code=start
 function productExceptSelf(nums: number[]): number[] {
-  return nums.map((_, index, arr) => {
-    return arr
-        .slice(0, index)
-        .concat(arr.slice(index + 1))
-        .reduce((a, b) => a * b)
-  })
+  const n = nums.length
+  const answer = new Array<number>(n).fill(1)
+
+  let leftProduct = 1
+  for (let i = 0; i < n; i++) {
+    answer[i] = leftProduct
+    leftProduct *= nums[i]
+  }
+
+  let rightProduct = 1
+  for (let i = n - 1; i >= 0; i--) {
+    answer[i] *= rightProduct
+    rightProduct *= nums[i]
+  }
+
+  return answer
 }
 // @lc code=end
 import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts"
