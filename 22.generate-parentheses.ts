@@ -6,14 +6,44 @@
 
 // @lc code=start
 function generateParenthesis(n: number): string[] {
-  let combo = []
-  let str = "(".repeat(n) + ")".repeat(n)
-  combo.push(str)
-  console.log(str.split("").flatMap((v, i) => v + i))
+    const solution: string[] = []
+    const answer: string[] = []
 
-  return combo
+    function backTracking(open: number, close: number) {
+        if (n === open && open === close) {
+            answer.push(solution.join(""))
+            return
+        }
+
+        if (open < n) {
+            solution.push("(")
+            backTracking(open + 1, close)
+            solution.pop()
+        }
+        if (close < open) {
+            solution.push(")")
+            backTracking(open, close + 1)
+            solution.pop()
+        }
+    }
+    backTracking(0, 0)
+    return answer
 }
 // @lc code=end
 
-const n = 3
-console.log(`n = ${n},`, generateParenthesis(n))
+import { assertEquals } from "https://deno.land/std@0.224.0/assert/mod.ts"
+
+const testCases = [
+    { n: 3, expected: ["((()))", "(()())", "(())()", "()(())", "()()()"] },
+    { n: 1, expected: ["()"] },
+    { n: 0, expected: [""] },
+]
+
+testCases.forEach(({ expected, ...input }) => {
+    const actual = generateParenthesis(input.n)
+    assertEquals(
+        actual,
+        expected,
+        `Case: ${JSON.stringify(input)}, Expected "${expected}", but got "${actual}"`
+    )
+})
