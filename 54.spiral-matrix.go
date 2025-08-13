@@ -15,7 +15,7 @@ func spiralOrder(matrix [][]int) []int {
 	}
 
 	spiral := []int{}
-	
+
 	top := 0
 	bottom := len(matrix) - 1
 	left := 0
@@ -54,9 +54,3 @@ func spiralOrder(matrix [][]int) []int {
 }
 
 // @lc code=end
-
-func main() {
-
-	matrix := [][]int{{7}, {9}, {6}}
-	spiralOrder(matrix)
-}
